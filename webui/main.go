@@ -3537,6 +3537,10 @@ func main() {
 		http.ServeFile(w, r, filepath.Join(config.Conf.Web.BaseDir, "webui", "js", "dbhub.js"))
 	})))
 
+	http.Handle("/js/lock.min.js", gz.GzipHandler(logReq(func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, filepath.Join(config.Conf.Web.BaseDir, "webui", "js", "lock.min.js"))
+	})))
+
 	// Other static files
 	http.Handle("/images/auth0.svg", gz.GzipHandler(logReq(func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, filepath.Join(config.Conf.Web.BaseDir, "webui", "images", "auth0.svg"))
